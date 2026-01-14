@@ -1,0 +1,63 @@
+####################################
+# Rust
+####################################
+
+# Cargo
+/target/
+**/*.rs.bk
+
+# Cargo.lock
+# (Descomente se for biblioteca)
+/Cargo.lock
+
+# Rustfmt
+rustfmt.toml
+
+# Clippy
+.clippy.toml
+
+####################################
+# Vim
+####################################
+
+# Swap files
+*.swp
+*.swo
+*.swn
+*.swm
+
+# Backup files
+*~
+*.bak
+
+# Session files
+Session.vim
+
+# Undo files
+*.un~
+
+####################################
+# Neovim
+####################################
+
+# Cache, logs e estado
+.nvim/
+.nvimrc.lua.bak
+
+# Neovim data (Linux)
+.local/share/nvim/
+.local/state/nvim/
+.cache/nvim/
+
+# Mason (LSPs, formatters, debuggers)
+.mason/
+
+####################################
+# Sistema
+####################################
+
+# Linux
+.DS_Store
+Thumbs.db
+
+
