@@ -60,4 +60,5 @@ Session.vim
 .DS_Store
 Thumbs.db
 
-
+# Envrionment files
+.env
