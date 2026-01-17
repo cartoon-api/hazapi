@@ -23,7 +23,8 @@ mod tests {
     use sqlx::PgPool;
 
     type AsyncError = Box<dyn std::error::Error + Send + Sync + 'static>;
-    #[tokio::main]
+
+    #[tokio::test]
     async fn test_create_pool() -> Result<(), AsyncError> {
         let pool: PgPool = create_pool().await?;
         Ok(assert!(!pool.is_closed()))

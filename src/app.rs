@@ -7,9 +7,14 @@ use sqlx::PgPool;
 use crate::conn::create_pool;
 use std::env;
 
+// Routers
+use crate::routes::{
+    characters
+};
+
 #[derive(Clone)]
 pub struct AppState {
-    pool: PgPool
+    pub pool: PgPool
 } 
 
 async fn create_app() -> Router {
@@ -17,6 +22,7 @@ async fn create_app() -> Router {
     let state: AppState = AppState { pool: pool };
     Router::new()
         .route("/", get(|| async { "Hello, World!" }))
+        .nest("/characters", characters::router()) 
         .layer(Extension(state))
 }
 

@@ -1,3 +1,4 @@
+mod routes;
 mod conn;
 mod app;
 
