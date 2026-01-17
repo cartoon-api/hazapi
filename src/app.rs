@@ -10,7 +10,8 @@ use std::env;
 // Routers
 use crate::routes::{
     characters,
-    universes
+    universes,
+    species
 };
 
 #[derive(Clone)]
@@ -23,8 +24,9 @@ async fn create_app() -> Router {
     let state: AppState = AppState { pool: pool };
     Router::new()
         .route("/", get(|| async { "Hello, World!" }))
-        .nest("/universes", universes::router())
         .nest("/characters", characters::router()) 
+        .nest("/universe", universes::router())
+        .nest("/species", species::router())
         .layer(Extension(state))
 }
 
