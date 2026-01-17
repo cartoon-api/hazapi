@@ -16,8 +16,9 @@ use crate::app::AppState;
 pub fn router() -> Router {
     Router::new()
         .route("/", get(get_all_characters))
-        .route("/{character_name}", get(get_character))
+        .route("/{ch_name}", get(get_character_by_name))
 }
+
 
 async fn get_all_characters(Extension(state): Extension<AppState>) -> Result<Json<Vec<Character>>, http::StatusCode> {
     let characters: Vec<Character> = sqlx::query_as!(
@@ -31,7 +32,7 @@ async fn get_all_characters(Extension(state): Extension<AppState>) -> Result<Jso
     Ok(Json(characters))
 }
 
-async fn get_character(Extension(state): Extension<AppState>, Path(character_name): Path<String>) -> Result<Json<Character>, http::StatusCode> {
+async fn get_character_by_name(Extension(state): Extension<AppState>, Path(character_name): Path<String>) -> Result<Json<Character>, http::StatusCode> {
     let character: Option<Character> = sqlx::query_as!(
         Character,
         "SELECT name, data, specie, class, universe FROM characters WHERE name = $1",
