@@ -10,6 +10,7 @@ use std::env;
 // Routers
 use crate::routes::{
     characters,
+    weapons,
     species
 };
 
@@ -24,6 +25,7 @@ async fn create_app() -> Router {
     Router::new()
         .route("/", get(|| async { "Hello, World!" }))
         .nest("/characters", characters::router()) 
+        .nest("/weapons", weapons::router())
         .nest("/species", species::router())
         .layer(Extension(state))
 }

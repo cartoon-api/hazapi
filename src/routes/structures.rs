@@ -10,3 +10,11 @@ pub struct Character {
     pub class: Option<String>,
     pub universe: Option<String>
 }
+
+#[derive(Serialize)]
+pub struct Weapon {
+    pub name: String,
+    pub data: Value,
+    pub universe: String,
+    pub owner: Option<String>
+}

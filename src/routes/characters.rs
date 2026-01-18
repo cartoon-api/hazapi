@@ -34,18 +34,18 @@ async fn get_all_characters(Extension(state): Extension<AppState>) -> Result<Jso
     Ok(Json(characters))
 }
 
-async fn get_character_by_name(Extension(state): Extension<AppState>, Path(character_name): Path<String>) -> Result<Json<Character>, http::StatusCode> {
-    let character: Option<Character> = sqlx::query_as!(
+async fn get_character_by_name(Extension(state): Extension<AppState>, Path(character): Path<String>) -> Result<Json<Character>, http::StatusCode> {
+    let ch: Option<Character> = sqlx::query_as!(
         Character,
         "SELECT name, data, specie, class, universe FROM characters WHERE name = $1",
-        character_name
+        character
         )
         .fetch_optional(&state.pool)
         .await
         .map_err(|_| http::StatusCode::INTERNAL_SERVER_ERROR)?;
 
-    match character {
-        Some(ch) => Ok(Json(ch)),
+    match ch {
+        Some(c) => Ok(Json(c)),
         None => Err(http::StatusCode::NOT_FOUND)
     }
 }
