@@ -33,6 +33,7 @@ async fn create_app() -> Router {
             get_service(ServeFile::new("static/index.html"))
             .handle_error(|_| async { http::StatusCode::INTERNAL_SERVER_ERROR })
             )
+        .route("/ping", get(|| async { "Pong!" }))
         .nest("/characters", characters::router()) 
         .nest("/weapons", weapons::router())
         .nest("/species", species::router())
