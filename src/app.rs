@@ -1,6 +1,12 @@
 // External USEs
-use axum::{Router, Extension, routing::get};
+use axum::{
+    Router, 
+    Extension, 
+    routing::get_service, 
+    http
+};
 use tokio::net::TcpListener;
+use tower_http::services::ServeFile;
 use sqlx::PgPool;
 
 // Internal USEs
@@ -23,7 +29,10 @@ async fn create_app() -> Router {
     let pool: PgPool = create_pool().await.expect("Failed to create pool");
     let state: AppState = AppState { pool: pool };
     Router::new()
-        .route("/", get(|| async { "Hello, World!" }))
+        .route("/", 
+            get_service(ServeFile::new("static/index.html"))
+            .handle_error(|_| async { http::StatusCode::INTERNAL_SERVER_ERROR })
+            )
         .nest("/characters", characters::router()) 
         .nest("/weapons", weapons::router())
         .nest("/species", species::router())

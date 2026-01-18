@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hazbin Hotel & Helluva Boss API Documentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --bg: #0b0f0b;
+      --card: #0f1a12;
+      --primary: #22c55e;
+      --secondary: #4ade80;
+      --text: #e7f5ec;
+      --muted: #9ca3af;
+      --border: #1f3d2b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(180deg, #0b0b12, #0f0f1a);
+      color: var(--text);
+    }
+
+    header {
+      padding: 48px 24px;
+      text-align: center;
+      background: radial-gradient(circle at top, #1a1a2e, #0b0b12);
+      border-bottom: 1px solid var(--border);
+    }
+
+    header h1 class="title" {
+      margin: 0;
+      font-size: 2.9rem;
+      color: linear-gradient(90deg, #22c55e, #4ade80);
+      letter-spacing: 1px;
+    }
+
+    header p {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+      display: grid;
+      gap: 48px;
+    }
+
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+    }
+
+    section h2 {
+      margin-top: 0;
+      color: var(--secondary);
+      font-size: 1.6rem;
+      border-left: 4px solid var(--primary);
+      padding-left: 12px;
+    }
+
+    .route {
+      margin-top: 24px;
+      padding: 18px 20px;
+      background: #10101b;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .route h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .method {
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(34,197,94,0.15);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .route p {
+      margin: 6px 0 12px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    code {
+      background: #1b1b2f;
+      color: #ffb703;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin: 10px 0 0;
+      columns: 2;
+    }
+
+    li {
+      margin: 4px 0;
+      font-size: 0.9rem;
+    }
+
+    .tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .tag {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      background: #1f1f35;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 16px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #0b0b12;
+    }
+
+    a { color: #ffb703; text-decoration: none; }
+
+    @media (max-width: 700px) {
+      ul { columns: 1; }
+      header h1 { font-size: 2.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Hazbin Hotel & Helluva Boss API</h1>
+  <p>Official fan-made API documentation providing structured access to characters, species, universes, and weapons from the Hazbin Hotel and Helluva Boss universes.</p>
+  <div style="margin-top:18px; display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+    <a href="https://github.com/cartoon-api/" target="_blank" class="tag">Community GitHub</a>
+    <a href="https://github.com/rafasoliv-linux" target="_blank" class="tag">Maintainer GitHub</a>
+  </div>
+</header>
+
+<main>
+
+  <section>
+    <h2>Available Universes</h2>
+    <div class="tags">
+      <span class="tag">hazbin_hotel</span>
+      <span class="tag">helluva_boss</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Available Species</h2>
+    <ul>
+      <li>angel</li>
+      <li>demon</li>
+      <li>imp</li>
+      <li>spider_demon</li>
+      <li>cat_demon</li>
+      <li>snake_demon</li>
+      <li>moth_demon</li>
+      <li>hellhound</li>
+      <li>succubus</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Characters Endpoints</h2>
+
+    <div class="route">
+      <h3><span class="method">GET</span> /characters</h3>
+      <code>/characters</code>
+      <p>Returns a list containing all available characters.</p>
+    </div>
+
+    <div class="route">
+      <h3><span class="method">GET</span> /characters/{character_name}</h3>
+      <code>/characters/charlie_morningstar</code>
+      <p>Accepted values for <strong>character_name</strong>:</p>
+      <ul>
+        <li>charlie_morningstar</li><li>vaggie</li><li>alastor</li><li>angel_dust</li><li>husk</li><li>niffty</li><li>sir_pentious</li><li>cherri_bomb</li><li>lucifer_morningstar</li><li>lilith_morningstar</li><li>adam</li><li>lute</li><li>vox</li><li>valentino</li><li>velvette</li><li>rosie</li><li>zestial</li><li>carmilla_carmine</li><li>blitzo</li><li>moxxie</li><li>millie</li><li>loona</li><li>stolas</li><li>octavia</li><li>stella</li><li>striker</li><li>fizzarolli</li><li>asmodeus</li><li>beelzebub</li><li>mammon</li><li>verosika_mayday</li><li>crimson</li>
+      </ul>
+    </div>
+
+    <div class="route">
+      <h3><span class="method">GET</span> /characters/{universe}</h3>
+      <code>/characters/hazbin_hotel</code>
+      <p>Filters characters by universe.</p>
+      <div class="tags">
+        <span class="tag">hazbin_hotel</span>
+        <span class="tag">helluva_boss</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Species Endpoints</h2>
+    <div class="route">
+      <h3><span class="method">GET</span> /species/{specie}</h3>
+      <code>/species/demon</code>
+      <p>Returns all characters that belong to the specified species.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Weapons Endpoints</h2>
+
+    <div class="route">
+      <h3><span class="method">GET</span> /weapons</h3>
+      <code>/weapons</code>
+      <p>Returns all registered weapons.</p>
+    </div>
+
+    <div class="route">
+      <h3><span class="method">GET</span> /weapons/{weapon_name}</h3>
+      <code>/weapons/angelic_spear</code>
+      <p>Accepted values for <strong>weapon_name</strong>:</p>
+      <ul>
+        <li>angelic_spear</li>
+        <li>angelic_steel_rifle</li>
+        <li>cherri_bomb_explosives</li>
+        <li>millie_axes</li>
+        <li>carmilla_angelic_weapons</li>
+        <li>lute_spear</li>
+        <li>adam_sword</li>
+        <li>angelic_steel_knife</li>
+        <li>imp_standard_guns</li>
+        <li>moxxie_sniper</li>
+      </ul>
+    </div>
+
+    <div class="route">
+      <h3><span class="method">GET</span> /weapons/{universe}</h3>
+      <code>/weapons/helluva_boss</code>
+      <p>Filters weapons by universe.</p>
+      <div class="tags">
+        <span class="tag">hazbin_hotel</span>
+        <span class="tag">helluva_boss</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Technologies & Frameworks</h2>
+    <p>This API was built with a strong focus on performance, safety, and scalability. We're using the following technologies:</p>
+    <ul>
+      <li><strong>Rust</strong> – memory-safe, high-performance systems programming language</li>
+      <li><strong>Axum</strong> – modern, ergonomic, and async-first web framework</li>
+      <li><strong>SQLx</strong> – asynchronous, compile-time checked SQL toolkit</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Credits</h2>
+    <p>This project was created and is maintained by:</p>
+    <ul>
+      <li><strong>Email:</strong> rafaeldossantosoliveira@proton.me</li>
+      <li><strong>GitHub:</strong> <a href="https://github.com/rafasoliv-linux" target="_blank">rafasoliv-linux</a></li>
+    </ul>
+    <p>We're continuously improving this API and its documentation. Contributions and feedback are welcome.</p>
+  </section>
+
+</main>
+
+<footer>
+  hazapi • Fan-made documentation • Built with Rust, Axum & SQLx
+</footer>
+
+<script>
+  console.log("Hazbin & Helluva Boss API documentation loaded");
+</script>
+
+</body>
+</html>
+
