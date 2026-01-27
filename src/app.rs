@@ -2,6 +2,7 @@
 use axum::{
     Router, 
     Extension, 
+    routing::get,
     routing::get_service, 
     http
 };
