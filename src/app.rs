@@ -44,7 +44,7 @@ async fn create_app() -> Router {
 pub async fn run() -> Result<(), Box<dyn std::error::Error>> {
     let app: Router = create_app().await;
     let port: String = env::var("PORT").unwrap_or_else(|_| "3000".to_string());
-    let addr = format!("127.0.0.1:{}", port);
+    let addr = format!("0.0.0.0:{}", port);
 
     let listener = TcpListener::bind(addr)
         .await?;
